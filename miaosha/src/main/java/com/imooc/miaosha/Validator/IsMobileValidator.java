@@ -1,7 +1,5 @@
 package com.imooc.miaosha.Validator;
 
-import java.lang.annotation.Annotation;
-
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
 

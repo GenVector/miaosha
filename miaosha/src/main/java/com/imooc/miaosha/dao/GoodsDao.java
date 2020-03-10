@@ -9,10 +9,13 @@ import org.apache.ibatis.annotations.Update;
 
 import com.imooc.miaosha.domain.MiaoshaGoods;
 import com.imooc.miaosha.vo.GoodsVo;
+import org.springframework.stereotype.Repository;
+
 //mybatis.pro项目基于xml
 //基于注解
 //注解配置不需要 userMapper.xml 文件,对比mybatis.pro项目
 @Mapper
+@Repository
 public interface GoodsDao {
 	
 	@Select("select g.*,mg.stock_count, mg.start_date, mg.end_date,mg.miaosha_price from miaosha_goods mg left join goods g on mg.goods_id = g.id")

@@ -22,7 +22,6 @@ import com.imooc.miaosha.redis.GoodsKey;
 import com.imooc.miaosha.redis.RedisService;
 import com.imooc.miaosha.result.Result;
 import com.imooc.miaosha.service.GoodsService;
-import com.imooc.miaosha.service.MiaoshaUserService;
 import com.imooc.miaosha.vo.GoodsDetailVo;
 import com.imooc.miaosha.vo.GoodsVo;
 
@@ -45,10 +44,11 @@ public class GoodController {
 	//商品列表
 //  第一次未优化压测  QPS:460    1000*5
 	
-	//页面缓存	
-	@RequestMapping(value="/to_list",produces="text/html")
+	//页面缓存
+	//这儿有中文乱码
+	@RequestMapping(value="/to_list",produces = {"text/html;charset=utf-8"})
 	@ResponseBody
-    public String list(HttpServletRequest request, HttpServletResponse response, Model model,MiaoshaUser user){  	
+    public String list(HttpServletRequest request, HttpServletResponse response, Model model,MiaoshaUser user){
     	model.addAttribute("user", user);
     	//取缓存
     	String html = redisService.get(GoodsKey.getGoodsList, "", String.class);

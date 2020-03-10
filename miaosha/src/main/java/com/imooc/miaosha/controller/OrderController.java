@@ -19,7 +19,7 @@ import com.imooc.miaosha.vo.GoodsVo;
 import com.imooc.miaosha.vo.OrderDetailVo;
 
 @Controller
-@RequestMapping("/order")
+@RequestMapping("order")
 public class OrderController {
 
 	@Autowired
@@ -34,7 +34,7 @@ public class OrderController {
 	@Autowired
 	GoodsService goodsService;
 	
-    @RequestMapping("/detail")
+    @RequestMapping("detail")
     @ResponseBody
     public Result<OrderDetailVo> info(Model model,MiaoshaUser user,
     		@RequestParam("orderId") long orderId) {
