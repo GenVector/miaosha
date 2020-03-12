@@ -21,7 +21,7 @@ public class RedisService {
     private JedisPool jedisPool;
 
     @Autowired
-    private  JedisPool autoJedisPool;
+    private JedisPool autoJedisPool;
 
     public RedisService() {
         JedisPoolConfig poolConfig = new JedisPoolConfig();
@@ -36,15 +36,12 @@ public class RedisService {
     @ConfigurationProperties(prefix = "spring.redis.pool")
     public JedisPoolConfig jedisPoolConfig() {
         JedisPoolConfig config = new JedisPoolConfig();
-		//最大空闲数
-		//config.setMaxIdle(10);
-		//最小空闲数
-		//config.setMinIdle(5);
-		//最大链接数
-		//config.setMaxTotal(20);
-        System.out.println("默认值：" + config.getMaxIdle());
-        System.out.println("默认值：" + config.getMinIdle());
-        System.out.println("默认值：" + config.getMaxTotal());
+        //最大空闲数
+        //config.setMaxIdle(10);
+        //最小空闲数
+        //config.setMinIdle(5);
+        //最大链接数
+        //config.setMaxTotal(20);
         return config;
     }
 
@@ -60,17 +57,17 @@ public class RedisService {
         factory.setPoolConfig(config);
         //配置链接Redis的信息
         //主机地址
-		factory.setHostName("192.168.70.128");
-		//端口
-		factory.setPort(6379);
+        factory.setHostName("192.168.70.128");
+        //端口
+        factory.setPort(6379);
         return factory;
     }
 
     @Bean(name = "redisTemplate")
-    public RedisTemplate<String, Object> redisTemplate(JedisConnectionFactory factory) {
+    public RedisTemplate<String, Object> redisTemplate() {
         RedisTemplate<String, Object> template = new RedisTemplate<String, Object>();
         //关联
-        template.setConnectionFactory(factory);
+        template.setConnectionFactory(jedisConnectionFactory(jedisPoolConfig()));
 
         //为key设置序列化器
         template.setKeySerializer(new StringRedisSerializer());

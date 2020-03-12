@@ -35,7 +35,7 @@ public class SwaggerConfiguration extends WebMvcConfigurationSupport {
     //cnm还真牛逼
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        //无法找到静态资源
+        //解决无法找到静态资源
         registry.addResourceHandler("/**").addResourceLocations("classpath:/static/");
         // 解决 SWAGGER 404报错
         registry.addResourceHandler("/swagger-ui.html").addResourceLocations("classpath:/META-INF/resources/");
